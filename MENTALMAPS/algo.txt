@@ -1,0 +1,87 @@
+Catering
+
+funçoes
+
+gerir pessoal
+gerir lucro/gastos
+gerir menu
+gerir lista de compras
+gerir material
+gerir tempo
+
+Resultados finais
+
+-menu
+	-lista de compras
+		-gastos
+-pessoal
+	-gastos
+
+gerir pessoal:
+	-contar horas
+	-adicionar a gastos
+
+
+
+class Refeicao(n_pessoas):
+	
+	atrb:
+		custo
+		quantidade
+		
+	meth:
+		getCusto
+		
+class RefeicaoA(Refeição, n_pessoas):
+	atrb:
+		produtos
+	meth:
+		calcular_custo
+
+class Trabalhador(nome, e_hora)
+
+	init:
+		self.par = par
+
+	adicionar_horas:
+	get_horas:
+	
+class Servico(nome, local, n_pessoas, p_pessoa):
+	
+	atrb:
+		self.par = par
+	
+	meth:	
+
+		getTrabalhadores()
+		calcular gasto comida
+		calcular gastos pessoal
+		calcular gastos logistica
+		calcular valor serviço
+		calcular lucro
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
