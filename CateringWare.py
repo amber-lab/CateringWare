@@ -13,7 +13,7 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 from datetime import datetime, date
 import os
-#from cat import *
+from cat import *
 
 class CateringApp(tk.Tk):
     def __init__(self):

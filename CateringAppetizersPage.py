@@ -62,7 +62,7 @@ class CateringAppetizersPage(tk.Frame):
         for item in data:
             self.div_listbox.listbox.insert('end', item)
 
-        manager_separator = CateringPageTitleLabel(self.main_frame.interior, 'Carregar/Apagar Menu Entradas', self.photo)
+        manager_separator = CateringPageTitleLabel(self.main_frame.interior, 'Gerir Menu Entradas', self.photo)
         manager_separator.place(relx = 0.1, y = 670, relwidth = 0.8, height = 30)
         
         self.manager_entry = CateringPageLabeledEntry(self.main_frame.interior, 'Nome do Menu Entradas', self.photo, on_default = False)

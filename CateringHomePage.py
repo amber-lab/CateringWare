@@ -16,7 +16,7 @@ class CateringHomePage(tk.Frame):
         self.background.bind('<Configure>', self.imageResize)
         self.background.place(relx = 0, rely = 0, relheight = 1, relwidth = 1)
         
-        title = CateringPageTitleLabel(self, 'CateringWare Casa Da Eira', self.photo)
+        title = CateringPageTitleLabel(self, 'CateringWare Tasca da Rosa', self.photo)
         title.place(relx = 0.05, y = 50, relwidth = 0.9, height = 60)
         services_separator = CateringPageTitleLabel(self, 'Proximos Serviços', self.photo)
         services_separator.place(relx = 0.1, y = 130, relwidth = 0.8, height = 30)

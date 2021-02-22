@@ -31,7 +31,7 @@ class CateringProductPage(tk.Frame):
         self.type_entry = CateringPageLabeledComboBox(self, 'Tipo de Produto', ['carne', 'peixe', 'sopa', 'bebida', 'entrada', 'sobremesa'], self.photo)
         self.type_entry.place(relx = 0.15, rely = 0.35, relwidth = 0.7, height = 30)
         
-        manager_separator = CateringPageTitleLabel(self, 'Carregar/Apagar Produto', self.photo)
+        manager_separator = CateringPageTitleLabel(self, 'Gerir Produto', self.photo)
         manager_separator.place(relx = 0.10, rely = 0.50, relwidth = 0.8, height = 30)
         
         self.manager_entry = CateringPageLabeledEntry(self, 'Nome do Produto', self.photo, on_default = False)

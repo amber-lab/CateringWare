@@ -10,7 +10,7 @@ class CateringPageMenuFrame(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         #LABEL MENU
-        self.eira_button = CateringPageMenuButton(self, image = BG_CINZA, text = 'Casa da Eira\n\nCateringWare')
+        self.eira_button = CateringPageMenuButton(self, image = BG_CINZA, text = 'Tasca da Rosa\n\nCateringWare')
         self.eira_button.place(relx = 0, rely = 0, relwidth = 1, relheight = 0.2)
 
         self.service_button = CateringPageMenuButton(self, image = BG_AZUL, text = 'Serviços')

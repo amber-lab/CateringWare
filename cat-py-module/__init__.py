@@ -81,7 +81,7 @@ class CateringAppetizersPage(tk.Frame):
         for item in data:
             self.div_listbox.listbox.insert('end', item)
 
-        manager_separator = CateringPageTitleLabel(self.main_frame.interior, 'Carregar/Apagar Menu Entradas', self.photo)
+        manager_separator = CateringPageTitleLabel(self.main_frame.interior, 'Gerir Menu Entradas', self.photo)
         manager_separator.place(relx = 0.1, y = 670, relwidth = 0.8, height = 30)
         
         self.manager_entry = CateringPageLabeledEntry(self.main_frame.interior, 'Nome do Menu Entradas', self.photo, on_default = False)
@@ -323,7 +323,7 @@ class CateringBarPage(tk.Frame):
         for item in data:
             self.white_drinks_listbox.listbox.insert('end', item)
 
-        manager_separator = CateringPageTitleLabel(self.main_frame.interior, 'Carregar/Apagar Bar', self.photo)
+        manager_separator = CateringPageTitleLabel(self.main_frame.interior, 'Gerir Bar', self.photo)
         manager_separator.place(relx = 0.1, y = 670, relwidth = 0.8, height = 30)
         
         self.manager_entry = CateringPageLabeledEntry(self.main_frame.interior, 'Nome do Bar', self.photo, on_default = False)
@@ -650,7 +650,7 @@ class CateringDessertsPage(tk.Frame):
         for item in data:
             self.div_listbox.listbox.insert('end', item)
 
-        manager_separator = CateringPageTitleLabel(self.main_frame.interior, 'Carregar/Apagar Menu Sobremesas', self.photo)
+        manager_separator = CateringPageTitleLabel(self.main_frame.interior, 'Gerir Menu Sobremesas', self.photo)
         manager_separator.place(relx = 0.1, y = 670, relwidth = 0.8, height = 30)
         
         self.manager_entry = CateringPageLabeledEntry(self.main_frame.interior, 'Nome do Menu Sobremesas', self.photo, on_default = False)
@@ -863,7 +863,7 @@ class CateringHomePage(tk.Frame):
         self.background.bind('<Configure>', self.imageResize)
         self.background.place(relx = 0, rely = 0, relheight = 1, relwidth = 1)
         
-        title = CateringPageTitleLabel(self, 'CateringWare Casa Da Eira', self.photo)
+        title = CateringPageTitleLabel(self, 'CateringWare Tasca da Rosa', self.photo)
         title.place(relx = 0.05, y = 50, relwidth = 0.9, height = 60)
         services_separator = CateringPageTitleLabel(self, 'Proximos Serviços', self.photo)
         services_separator.place(relx = 0.1, y = 130, relwidth = 0.8, height = 30)
@@ -1015,7 +1015,7 @@ class CateringMenuPage(tk.Frame):
         for item in data:
             self.menu_drinks_listbox.listbox.insert('end', item)
  
-        manager_separator = CateringPageTitleLabel(self.main_frame.interior, 'Carregar/Apagar Menu', self.photo)
+        manager_separator = CateringPageTitleLabel(self.main_frame.interior, 'Gerir Menu', self.photo)
         manager_separator.place(relx = 0.1, y = 890, relwidth = 0.8, height = 30)
         
         self.manager_entry = CateringPageLabeledEntry(self.main_frame.interior, 'Nome do Menu', self.photo, on_default = False)
@@ -1344,7 +1344,7 @@ class CateringPageMenuFrame(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         #LABEL MENU
-        self.eira_button = CateringPageMenuButton(self, image = BG_CINZA, text = 'Casa da Eira\n\nCateringWare')
+        self.eira_button = CateringPageMenuButton(self, image = BG_CINZA, text = 'Tasca da Rosa\n\nCateringWare')
         self.eira_button.place(relx = 0, rely = 0, relwidth = 1, relheight = 0.2)
 
         self.service_button = CateringPageMenuButton(self, image = BG_AZUL, text = 'Serviços')
@@ -1623,7 +1623,7 @@ class CateringProductPage(tk.Frame):
         self.type_entry = CateringPageLabeledComboBox(self, 'Tipo de Produto', ['carne', 'peixe', 'sopa', 'bebida', 'entrada', 'sobremesa'], self.photo)
         self.type_entry.place(relx = 0.15, rely = 0.35, relwidth = 0.7, height = 30)
         
-        manager_separator = CateringPageTitleLabel(self, 'Carregar/Apagar Produto', self.photo)
+        manager_separator = CateringPageTitleLabel(self, 'Gerir Produto', self.photo)
         manager_separator.place(relx = 0.10, rely = 0.50, relwidth = 0.8, height = 30)
         
         self.manager_entry = CateringPageLabeledEntry(self, 'Nome do Produto', self.photo, on_default = False)
@@ -2359,7 +2359,7 @@ class CateringServicePage(tk.Frame):
         self.products_b.bind('<ButtonRelease-1>', self.getExtraProductsPage)
         self.products_b.place(relx = 0.70, y = 2500, relwidth = 0.20, height = 60)
     
-        manager_separator = CateringPageTitleLabel(self.main_frame.interior, 'Carregar/Apagar Serviço', self.photo)
+        manager_separator = CateringPageTitleLabel(self.main_frame.interior, 'Gerir Serviço', self.photo)
         manager_separator.place(relx = 0.1, y = 2580, relwidth = 0.8, height = 30)
         
         self.manager_entry = CateringPageLabeledEntry(self.main_frame.interior, 'Nome do Serviço', self.photo, on_default = False)
@@ -3133,7 +3133,7 @@ class CateringWorkerPage(tk.Frame):
         self.type_entry = CateringPageLabeledComboBox(self, 'Tipo de Trabalhador', ['geral', 'servir', 'bar', 'limpezas', 'cozinha'], self.photo)
         self.type_entry.place(relx = 0.15, rely = 0.30, relwidth = 0.7, height = 30)
         
-        manager_separator = CateringPageTitleLabel(self, 'Carregar/Apagar Trabalhador', self.photo)
+        manager_separator = CateringPageTitleLabel(self, 'Gerir Trabalhador', self.photo)
         manager_separator.place(relx = 0.1, rely = 0.50, relwidth = 0.8, height = 30)
         
         self.manager_entry = CateringPageLabeledEntry(self, 'Nome do Trabalhador', self.photo, on_default = False)

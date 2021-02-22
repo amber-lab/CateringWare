@@ -187,7 +187,7 @@ class CateringServicePage(tk.Frame):
         self.products_b.bind('<ButtonRelease-1>', self.getExtraProductsPage)
         self.products_b.place(relx = 0.70, y = 2500, relwidth = 0.20, height = 60)
     
-        manager_separator = CateringPageTitleLabel(self.main_frame.interior, 'Carregar/Apagar Serviço', self.photo)
+        manager_separator = CateringPageTitleLabel(self.main_frame.interior, 'Gerir Serviço', self.photo)
         manager_separator.place(relx = 0.1, y = 2580, relwidth = 0.8, height = 30)
         
         self.manager_entry = CateringPageLabeledEntry(self.main_frame.interior, 'Nome do Serviço', self.photo, on_default = False)

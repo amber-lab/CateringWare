@@ -26,7 +26,7 @@ class CateringWorkerPage(tk.Frame):
         self.type_entry = CateringPageLabeledComboBox(self, 'Tipo de Trabalhador', ['geral', 'servir', 'bar', 'limpezas', 'cozinha'], self.photo)
         self.type_entry.place(relx = 0.15, rely = 0.30, relwidth = 0.7, height = 30)
         
-        manager_separator = CateringPageTitleLabel(self, 'Carregar/Apagar Trabalhador', self.photo)
+        manager_separator = CateringPageTitleLabel(self, 'Gerir Trabalhador', self.photo)
         manager_separator.place(relx = 0.1, rely = 0.50, relwidth = 0.8, height = 30)
         
         self.manager_entry = CateringPageLabeledEntry(self, 'Nome do Trabalhador', self.photo, on_default = False)
