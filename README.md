@@ -44,7 +44,7 @@ Esta página tem três butões, "Gravar", "Carregar" e "Apagar". O butão "Grava
 Esta pagina contém uma Barra de Estado por baixo dos butões que mostra mensagens de acordo com as alterações feita ou possíveis erros.\
 ![Barra de estados](./apresentação/barra_estados_pessoal.png)\
 Para Carregar um trabalhador é necessário preencher o "Nome de Trabalhador" na secção "Gerir Trabalhador", quando clicar no butão carregar será apresentada uma lista de trablhadores e deve haver um duplo clique no nome do trabalhador à escolha, se não preencher este campo serão carregados todos os trabalhadores.\
-![Lista de trabalhadores carregados](./apresentação/lista_.png)
+![Lista de trabalhadores carregados](./apresentação/lista_trabalhadores.png)
 
 #### Página de Produtos
 A página de produtos é dividida em duas partes, "Criar Novo Produto" e "Gerir Produto".\
