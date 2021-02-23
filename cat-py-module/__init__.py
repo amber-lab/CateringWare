@@ -214,7 +214,7 @@ class CateringAppetizersPage(tk.Frame):
                 self.scrollframe.listbox.insert('end', row[1])
             self.scrollframe.place(relx = 0.25, y = 770, relwidth = 0.50, height = 150)
             self.scrollframe.listbox.bind('<Double-Button-1>', self.setData)
-            self.setStatus('Lista de Menus carregad com sucesso!')
+            self.setStatus('Lista de Menus carregados com sucesso!')
     
     def setData(self, event):
         self.clearListbox(event)
@@ -2583,7 +2583,7 @@ class CateringServicePage(tk.Frame):
         except CateringObjectNotFound:
             self.setStatus('Não foram encontrados Serviços com esse nome!')
         else:
-            self.loaded_listbox = CateringPageScrollBarList(self.main_frame.interior, 'Menus Carregados', self.photo, AZUL, destroyButton = True)
+            self.loaded_listbox = CateringPageScrollBarList(self.main_frame.interior, 'Serviços Carregados', self.photo, AZUL, destroyButton = True)
             for row in data:
                 self.loaded_listbox.listbox.insert('end', row[1])
             self.loaded_listbox.place(relx = 0.25, y = 2680, relwidth = 0.50, height = 150)
