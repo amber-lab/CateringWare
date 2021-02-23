@@ -10,7 +10,7 @@ Em desenvolvimento.
 - Criação de relatório de preços, material de trabalho e produtos do serviço
 
 # Futuras Atualizações
-- Gestão de Serviços criados por formulário de @amber-lab/TascaDaRosaWeb
+- Gestão de Serviços criados por formulário de [@amber-lab/TascaDaRosaWeb](https://github.com/amber-lab/TascaDaRosaWeb)
 - Melhoria de GUI
 - Melhoria de performance de inicialização
 - Melhoria dos estilos dos relatórios
