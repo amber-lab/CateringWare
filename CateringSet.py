@@ -13,7 +13,7 @@ class CateringSet():
     def getItems(self):
         tools = CateringItems('Ferramentas ' + self.name)
         products_n = CateringItems('Produtos ' + self.name)
-        drinks_n = CateringItems('Bebidas' + self.name)
+        drinks_n = CateringItems('Bebidas ' + self.name)
 
         types = []
         for pro in self.products.get().values():
@@ -47,7 +47,7 @@ class CateringSet():
             else:   
                 for item in CateringProduct.items[typ]:
                     tools.add(item, value = int(self.number * 1.1))
-        return {'ferramentas' : tools, 'produtos' : products_n, 'bebidas' : products_n}
+        return {'ferramentas' : tools, 'produtos' : products_n, 'bebidas' : drinks_n}
 
     def setObjects(self, product):
         if isinstance(product, list):
@@ -216,7 +216,7 @@ class CateringExtraMenu(CateringSet):
     def __init__(self, name, inloadf = 0):
         raise Exception('Impossivel instanciar esta class')
 
-    def getItems(self, level = 2):
+    def getItems(self, level):
         tools = CateringItems('Ferramentas ' + self.name)
         products_items = CateringItems('Produtos ' + self.name)
         n_items = self.number * (level + 1)
@@ -254,8 +254,8 @@ class CateringExtraMenu(CateringSet):
                 
         return {'ferramentas' : tools, 'produtos' : products_items}
 
-    def getTotal(self, level = 2):
-        self.getItems()
+    def getTotal(self, level):
+        self.getItems(level)
         total = {'cost' : 0, 'price' : 0, 'profit' : 0}
         for keys, values in self.getItems(level)['produtos'].get().items():
             total['cost'] += round(values * self.products.get(keys).cost, 2)

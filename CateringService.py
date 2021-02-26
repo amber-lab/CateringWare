@@ -57,8 +57,12 @@ class CateringService():
         self.total = {'cost' : 0, 'price' : 0}
         for sets in self.sets.values():
             if sets:
-                self.total['cost'] += sets.getTotal()['cost']
-                self.total['price'] += sets.getTotal()['price']
+                if sets.type == 'appetizers' or sets.type == 'desserts':
+                    self.total['cost'] += sets.getTotal(self.level)['cost']
+                    self.total['price'] += sets.getTotal(self.level)['price']
+                else:
+                    self.total['cost'] += sets.getTotal()['cost']
+                    self.total['price'] += sets.getTotal()['price']
         self.total['cost'] += self.getDistanceCost()
         return self.total
         
@@ -93,13 +97,13 @@ class CateringService():
         for sets in self.sets.values():
             if sets:
                 if sets.type == 'appetizers':
-                    sets.getItems(level = self.apt_level)
+                    sets.getItems(self.apt_level)
                     if hasattr(sets, 'tools'):
                         self.tools.add(sets.tools)
                     if hasattr(sets, 'products_n'):
                         self.products_n.add(sets.products_n)
                 elif sets.type == 'desserts':
-                    sets.getItems(level = self.dst_level)
+                    sets.getItems(self.dst_level)
                     if hasattr(sets, 'tools'):
                         self.tools.add(sets.tools)
                     if hasattr(sets, 'products_n'):
@@ -208,7 +212,7 @@ class CateringService():
                     page_items.append(sett.getItems()['ferramentas'])
                     page_items.append(sett.getItems()['bebidas'])
                 elif sett.type == 'bar':
-                    page_items.append(sett.getItems()['produtos'])
+                    page_items.append(sett.getItems()['bebidas'])
                 elif sett.type == 'desserts':
                     page_items.append(sett.getItems(level = self.dst_level)['ferramentas'])
                 elif sett.type == 'appetizers':
@@ -233,33 +237,37 @@ class CateringService():
         
     def getExtraProductsPage(self):
         page = HTMLWriter(self.name, 'Produtos')
-        page_items = list()
+        page.openTable();
+        page.openRow();
         for sett in self.sets.values():
             if sett:
                 if sett.type == 'appetizers':
-                    page_items.append(sett.getItems()['produtos'])
+                    items = sett.getItems(self.apt_level)['produtos']
+                    page.openCell()
+                    page.addHeader('{n}'.format(n = items.name.capitalize()))
+                    for items_k, items_v in items.get().items():
+                        page.addParagraph('{k} = {v}'.format(k = items_k, v = items_v))
+                    page.closeCell()
                 elif sett.type == 'desserts':
-                    page_items.append(sett.getItems()['produtos'])
+                    items = sett.getItems(self.dst_level)['produtos']
+                    page.openCell()
+                    page.addHeader('{n}'.format(n = items.name.capitalize()))
+                    for items_k, items_v in items.get().items():
+                        page.addParagraph('{k} = {v}'.format(k = items_k, v = items_v))
+                    page.closeCell()
                 elif sett.type == 'course':
-                    page_items.append(sett.getItems()['produtos'])
-        div_counter = 2
-        loop_counter = 1
-        page.openDiv()
-        for items in page_items:
-            if loop_counter >= div_counter:
-                page.closeDiv()
-                page.openDiv()
-            page.addHeader('{n}'.format(n = items.name.capitalize()))
-            for items_k, items_v in items.get().items():
-                page.addParagraph('{k} = {v}'.format(k = items_k, v = items_v))
-            loop_counter += 1
-        page.closeDiv()
-        page.close()
+                    items = sett.getItems()['produtos']
+                    page.openCell()
+                    page.addHeader('{n}'.format(n = items.name.capitalize()))
+                    for items_k, items_v in items.get().items():
+                        page.addParagraph('{k} = {v}'.format(k = items_k, v = items_v))
+                    page.closeCell()
     
     def getTotalPage(self):
         page = HTMLWriter(self.name, 'Total')
         total = {'cost' : 0, 'price' : 0, 'profit' : 0}
-        page.openDiv()
+        page.openTable()
+        page.openRow()
         for sett in self.sets.values():
             if sett:
                 if sett.type != 'team':
@@ -267,6 +275,7 @@ class CateringService():
                         items = sett.getTotal(self.apt_level).items()
                     else:
                         items = sett.getTotal().items()
+                    page.openCell()
                     page.addHeader(sett.name)
                     for key, value in items:
                         if key == 'cost':
@@ -278,13 +287,17 @@ class CateringService():
                         elif key == 'profit':
                             page.addParagraph('Lucro = {v} €'.format(v = round(value, 2)))
                             total['profit'] += round(value, 2)
-                    # page.addBreakRow()        
+                    page.closeCell()
+        page.closeRow()
+        page.closeTable()
+        page.openDiv()
         page.addHeader('Custo Médio de Logística')
         page.addParagraph('Distância do Local: {} km'.format(self.distance))
         page.addParagraph('Numero de Viagens: {}'.format(self.trips))
         page.addParagraph('Total Logística: {} €'.format(self.getDistanceCost()))
         total['cost'] += self.getDistanceCost()
         page.closeDiv()
+        
         page.openDiv()
         page.addHeader(self.sets['team'].name)
         total['cost'] += self.sets['team'].getTotal()['cost']

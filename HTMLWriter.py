@@ -28,8 +28,8 @@ class HTMLWriter():
         self.file.write('<title>{t}</title>\n'.format(t = name))
         self.file.write('<style>\n')
 
-        self.file.write('table {padding: 10px;}\n')
-        self.file.write('table, th, td {padding: 15px; vertical-align:top;}\n')
+        self.file.write('table{padding:0px; border: 1px solid grey;padding-top: 15px; border-collapse: collapse;}\n')
+        self.file.write('th, td {padding: 5px;vertical-align:top;border:1px solid grey}\n')
         self.file.write('h2 {color:grey;}\n')
         self.file.write('</style>\n')
         self.file.write('</head>\n')
