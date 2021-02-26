@@ -18,8 +18,8 @@ class CateringService():
         self.status = 'aberto'
         self.extra_tables = 0
         self.site = ''
-        self.apt_l = 1
-        self.dst_l = 1
+        self.apt_level = 1
+        self.dst_level = 1
         try:
             CateringDBManager.load(CateringDBManager.db_info['services'], name)
         except CateringObjectNotFound:
@@ -93,13 +93,13 @@ class CateringService():
         for sets in self.sets.values():
             if sets:
                 if sets.type == 'appetizers':
-                    sets.getItems(level = self.apt_l)
+                    sets.getItems(level = self.apt_level)
                     if hasattr(sets, 'tools'):
                         self.tools.add(sets.tools)
                     if hasattr(sets, 'products_n'):
                         self.products_n.add(sets.products_n)
                 elif sets.type == 'desserts':
-                    sets.getItems(level = self.dst_l)
+                    sets.getItems(level = self.dst_level)
                     if hasattr(sets, 'tools'):
                         self.tools.add(sets.tools)
                     if hasattr(sets, 'products_n'):
@@ -121,7 +121,7 @@ class CateringService():
                 id_list.append(self.sets[sets].id)
             else:
                 id_list.append(0)
-        return(self.id, self.name, self.date, self.number, self.status, self.cups_n, self.tabletype, self.extra_tables, self.trips, self.distance, self.site, id_list[0], id_list[1], id_list[2], id_list[3], id_list[4], self.apt_l, self.dst_l)
+        return(self.id, self.name, self.date, self.number, self.status, self.cups_n, self.tabletype, self.extra_tables, self.trips, self.distance, self.site, id_list[0], id_list[1], id_list[2], id_list[3], id_list[4], self.apt_level, self.dst_level)
     
     def save(self, overwrite = False):
         if not hasattr(self, 'id'):
@@ -161,8 +161,8 @@ class CateringService():
                 obj.trips = data[8]
                 obj.distance = data[9]
                 obj.site = data[10]
-                obj.apt_l = data[16]
-                obj.dst_l = data[17]
+                obj.apt_level = data[16]
+                obj.dst_level = data[17]
                 sets_list = [data[11], data[12], data[13], data[14], data[15]]
                 sets_type = [CateringCourseMenu, CateringBar, CateringAppetizersMenu, CateringDessertsMenu, CateringTeam]
                 for sets in sets_list:
@@ -206,39 +206,42 @@ class CateringService():
                     pass
                 elif sett.type == 'course':
                     page_items.append(sett.getItems()['ferramentas'])
-                    page_items.append(sett.getItems()['produtos'])
+                    page_items.append(sett.getItems()['bebidas'])
                 elif sett.type == 'bar':
                     page_items.append(sett.getItems()['produtos'])
                 elif sett.type == 'desserts':
-                    page_items.append(sett.getItems(level = self.dst_l)['ferramentas'])
+                    page_items.append(sett.getItems(level = self.dst_level)['ferramentas'])
                 elif sett.type == 'appetizers':
-                    page_items.append(sett.getItems(level = self.apt_l)['ferramentas'])
-        print("LENLENLEN\n" + str(len(page_items)) + "LENLENLEN")
+                    page_items.append(sett.getItems(level = self.apt_level)['ferramentas'])
         div_counter = int(len(page_items)) / 3
         loop_counter = 0
-        page.openDiv()
+        page.openTable()
+        page.openRow()
+        page.openCell()
         for items in page_items:
             if loop_counter >= div_counter:
-                page.closeDiv()
-                page.openDiv()
+                page.closeCell()
+                page.openCell()
                 loop_counter = 0
             page.addHeader('{n}'.format(n = items.name.capitalize()))
             for items_k, items_v in items.get().items():
                 page.addParagraph('{k} = {v}'.format(k = items_k, v = items_v))
             loop_counter += 1
         page.closeDiv()
+        page.closeTable()
         page.close()
         
     def getExtraProductsPage(self):
-        page = HTMLWriter(self.name, 'Sobremesas-Entradas')
+        page = HTMLWriter(self.name, 'Produtos')
         page_items = list()
         for sett in self.sets.values():
             if sett:
                 if sett.type == 'appetizers':
-                    page_items.append(sett.getItems(self.apt_l)['produtos'])
+                    page_items.append(sett.getItems()['produtos'])
                 elif sett.type == 'desserts':
-                    page_items.append(sett.getItems(self.dst_l)['produtos'])
-                
+                    page_items.append(sett.getItems()['produtos'])
+                elif sett.type == 'course':
+                    page_items.append(sett.getItems()['produtos'])
         div_counter = 2
         loop_counter = 1
         page.openDiv()
@@ -261,7 +264,7 @@ class CateringService():
             if sett:
                 if sett.type != 'team':
                     if sett.type == 'appetizers' or sett.type == 'desserts':
-                        items = sett.getTotal(self.apt_l).items()
+                        items = sett.getTotal(self.apt_level).items()
                     else:
                         items = sett.getTotal().items()
                     page.addHeader(sett.name)

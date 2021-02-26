@@ -27,10 +27,9 @@ class HTMLWriter():
         self.file.write('<head>\n')
         self.file.write('<title>{t}</title>\n'.format(t = name))
         self.file.write('<style>\n')
-        self.file.write('.clearfix::after {content: "";clear: both;display: table;}')
-        self.file.write('.box {float:left;width:30.0%;padding:20px}')
-        self.file.write('table {border-collapse: collapse;padding: 10px;}\n')
-        self.file.write('table, th, td {border: 1px solid black;padding: 10px;}\n')
+
+        self.file.write('table {padding: 10px;}\n')
+        self.file.write('table, th, td {padding: 15px; vertical-align:top;}\n')
         self.file.write('h2 {color:grey;}\n')
         self.file.write('</style>\n')
         self.file.write('</head>\n')
@@ -41,10 +40,28 @@ class HTMLWriter():
         self.file.write('<div class = "clearfix">\n')
 
     def openDiv(self):
-        self.file.write('<div class = "box">\n')
+        self.file.write('<div>\n')
         
     def closeDiv(self):
         self.file.write('</div>\n')
+        
+    def openTable(self):
+        self.file.write('<table>\n')
+        
+    def closeTable(self):
+        self.file.write('</table>\n')
+    
+    def openRow(self):
+        self.file.write('<tr>\n')
+        
+    def closeRow(self):
+        self.file.write('</tr>\n')
+    
+    def openCell(self):
+        self.file.write('<td>\n')
+        
+    def closeCell(self):
+        self.file.write('</td>\n')
     
     def addHeader(self, text, h = 'h3'):
         self.file.write('<{h}>{t}</{h}>\n'.format(h = h, t = text))
@@ -77,4 +94,3 @@ class HTMLWriter():
             os.remove('C:\\Users\\L.A.B\\Desktop\\CateringCalculator\\Inventarios\\{n}\\debug.log'.format(n = self.name))
         except FileNotFoundError:pass
         except PermissionError:pass
-        print('\nPÁGINA {n} CRIADA!\n'.format(n = self.name))

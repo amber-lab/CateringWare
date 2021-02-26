@@ -6,7 +6,7 @@ class CateringHomePage(tk.Frame):
         super().__init__(master)
         self.photo = ImageTk.PhotoImage(BG_CINZA)
         
-        self.img = Image.open('HomePageBG.png')
+        self.img = Image.open('.\\img\\home.png')
         self.img_copy = self.img.copy()
         
         self.bg_photo = ImageTk.PhotoImage(self.img)

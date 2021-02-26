@@ -11,7 +11,6 @@ class CateringDBManager():
     def save(db_info, data):
         conn = sqlite3.connect('CateringDB.db')
         query = "INSERT INTO {t} ({c}) VALUES {v}".format(t = db_info['table'], c = ', '.join(db_info['columns']), v = data)
-        print(query)
         conn.execute(query)
         conn.commit()
         conn.close()
@@ -32,7 +31,6 @@ class CateringDBManager():
             query = "SELECT {c} FROM {t} WHERE NAME = '{n}'".format(c = ', '.join(db_info['columns']), t = db_info['table'], n = name)
         if operator:
             query += " {}".format(operator)
-        print(query)
         cursor = conn.execute(query)
         if like or where_column or id_list:
             data = cursor.fetchall()
@@ -50,7 +48,6 @@ class CateringDBManager():
         query = "DELETE FROM {t} WHERE ID = {i}".format(t = db_info['table'], i = data[0])
         if operator:
             query += ' {}'.format(operator)
-        print(query)
         conn.execute(query)
         conn.commit()
         conn.close()
@@ -69,7 +66,6 @@ class CateringDBManager():
         query = "UPDATE {t} SET {d} WHERE ID = {i}".format(t = db_info['table'], d = data_str, i = data[0])
         if operator:
             query += ' {}'.format(operator)
-        print(query)
         conn.execute(query)
         conn.commit()
         conn.close()

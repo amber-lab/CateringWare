@@ -364,8 +364,8 @@ class CateringServicePage(tk.Frame):
                 self.obj.trips = int(trips)
                 self.obj.sets = {'menu' : 0, 'bar' : 0, 'appetizers' : 0, 'desserts' : 0, 'team' : 0}
                 self.obj.setSets(team)
-                self.obj.apt_l = int(appetizers_level)
-                self.obj.dst_l = int(desserts_level)
+                self.obj.apt_level = int(appetizers_level)
+                self.obj.dst_level = int(desserts_level)
                 for item in [menu, bar, desserts, appetizers]:
                     if item:
                         self.obj.setSets(CateringSet.load(item))
@@ -391,8 +391,8 @@ class CateringServicePage(tk.Frame):
                 self.obj.site = site
                 self.obj.distance = int(distance)
                 self.obj.trips = int(trips)
-                self.obj.apt_l = int(appetizers_level)
-                self.obj.dst_l = int(desserts_level)
+                self.obj.apt_level = int(appetizers_level)
+                self.obj.dst_level = int(desserts_level)
                 for item in [menu, bar, desserts, appetizers]:
                     if item:
                         self.obj.setSets(CateringSet.load(item))
@@ -433,8 +433,8 @@ class CateringServicePage(tk.Frame):
                       (self.trips_entry, self.obj.trips),
                       (self.table_type_entry, self.obj.tabletype),
                       (self.table_n_entry, self.obj.extra_tables),
-                      (self.appetizers_level, self.obj.apt_l),
-                      (self.desserts_level, self.obj.dst_l)]
+                      (self.appetizers_level, self.obj.apt_level),
+                      (self.desserts_level, self.obj.dst_level)]
         for data in data_entry:
             data[0].setEntryValue(data[1])
         

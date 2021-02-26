@@ -13,6 +13,8 @@ class CateringSet():
     def getItems(self):
         tools = CateringItems('Ferramentas ' + self.name)
         products_n = CateringItems('Produtos ' + self.name)
+        drinks_n = CateringItems('Bebidas' + self.name)
+
         types = []
         for pro in self.products.get().values():
             if pro.type == 'bebida':
@@ -22,8 +24,10 @@ class CateringSet():
                 else:
                     literpp = 0.1
                 botle_n = (self.number * literpp) / pro.liter
-                products_n.add(pro.name, value = int(botle_n))
+                drinks_n.add(pro.name, value = int(botle_n))
                 pass
+            if pro.type in ['carne', 'sopa', 'peixe']:
+                products_n.add(pro.name, value = self.number)
             types.append(pro.type)
         types = set(types)
 
@@ -43,7 +47,7 @@ class CateringSet():
             else:   
                 for item in CateringProduct.items[typ]:
                     tools.add(item, value = int(self.number * 1.1))
-        return {'ferramentas' : tools, 'produtos' : products_n}
+        return {'ferramentas' : tools, 'produtos' : products_n, 'bebidas' : products_n}
 
     def setObjects(self, product):
         if isinstance(product, list):
