@@ -22,8 +22,8 @@ Em desenvolvimento.
 - Sqlite3
 
 # Informação de executavél
-Todas as classes estão na raiz do repositório, a diretoria "cat-py-module" contém as mesmas classes e é usada para a compilação do software em executavél usando "cx_Freeze" com o script "setup.py", esta diretoria é movida para os modulos raiz de python onde a biblioteca cx_Freeze irá fazer uma procura automática.\
-Para correr a aplicação no interpretador Python é necessário usar o ficheiro principal de "CateringWare.py" e mover o ficheiro de inicialização localizado em "cat-py-module" para a diretoria "lib\cat" da instalação Python.
+Todas as classes estão na raiz do repositório, a diretoria "cat-py-module" contém as mesmas classes e é usada para a compilação do software em executavél usando "cx_Freeze" com o script "setup.py", esta diretoria é movida para os modulos raiz de python onde a biblioteca cx_Freeze irá fazer uma procura automática. Para criar o ficheiro init de "cat-py-module" ira ser criada uma função\
+Para correr a aplicação no interpretador Python é necessário usar o ficheiro principal de "CateringWare.py" e mover o ficheiro de inicialização localizado em "cat-py-module" para a diretoria "lib\cat" da instalação Python ou então usar "CateringWareDebug.py" para usar as classes na raiz.
 Para iniciar compilação, navegar até raiz do software e executar "python setup.py build"
 Gestão de ficheiros para correção de erros a ser trabalhado.
 
@@ -211,7 +211,18 @@ A página de Serviços é dividida em 9 secções:
 		Criação de relatório acerca de valores gastas e estimativa de retorno de valores baseados nos produtos necessários
 	- Produtos
 		Corresponde ao número de produtos necessários de acordo com os menus e niveis de quantidade assinalados
+
 ![Resultado Serviço](./apresentação/serviço_resultados.png)
+
+#### Exemplo de Relatórios
+
+##### Montagem
+![Relatório Montagem](./apresentação/relatoriomontagem.png)
+##### Valores
+![Relatório Valores](./apresentação/relatoriototal.png)
+##### Produtos
+![Relatório Produtos](./apresentação/relatorioprodutos.png)
+
 9. Gerir Serviço
 	- Entrada de dados
 		- Nome do serviço a carregar ou apagar
