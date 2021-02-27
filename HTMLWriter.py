@@ -27,10 +27,10 @@ class HTMLWriter():
         self.file.write('<head>\n')
         self.file.write('<title>{t}</title>\n'.format(t = name))
         self.file.write('<style>\n')
-
-        self.file.write('table{padding:0px; border: 1px solid grey;padding-top: 15px; border-collapse: collapse;}\n')
-        self.file.write('th, td {padding: 5px;vertical-align:top;border:1px solid grey}\n')
-        self.file.write('h2 {color:grey;}\n')
+        self.file.write('table {padding:0px; border: 0 px solid grey;padding-top: 5px; border-collapse: collapse;}\n')
+        self.file.write('tr, td, th {padding: 10px;vertical-align:top;border:0px solid grey}\n')
+        self.file.write('h2 {color:grey; padding-top: 20px}\n')
+        self.file.write('.autotable , .autotable tr, .autotable td, .autotable th{border: 1px solid lightgrey;}')
         self.file.write('</style>\n')
         self.file.write('</head>\n')
         self.file.write('<body>\n')
@@ -73,7 +73,7 @@ class HTMLWriter():
         self.file.write('<br>')
 
     def addTable(self, title, data):
-        self.file.write('<table>\n')
+        self.file.write('<table class="autotable">\n')
         self.file.write('<tr>\n')
         for t in title:
             self.file.write('<th><b>{h}</b></th>\n'.format(h = t))

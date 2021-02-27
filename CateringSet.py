@@ -27,7 +27,7 @@ class CateringSet():
                 drinks_n.add(pro.name, value = int(botle_n))
                 pass
             if pro.type in ['carne', 'sopa', 'peixe']:
-                products_n.add(pro.name, value = self.number)
+                products_n.add(pro.name, value = int(self.number * 1.25))
             types.append(pro.type)
         types = set(types)
 

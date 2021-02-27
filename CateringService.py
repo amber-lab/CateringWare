@@ -219,6 +219,7 @@ class CateringService():
                     page_items.append(sett.getItems(level = self.apt_level)['ferramentas'])
         div_counter = int(len(page_items)) / 3
         loop_counter = 0
+        page.openDiv()
         page.openTable()
         page.openRow()
         page.openCell()
@@ -262,6 +263,10 @@ class CateringService():
                     for items_k, items_v in items.get().items():
                         page.addParagraph('{k} = {v}'.format(k = items_k, v = items_v))
                     page.closeCell()
+        page.closeRow()
+        page.closeTable()
+        page.close()
+        
     
     def getTotalPage(self):
         page = HTMLWriter(self.name, 'Total')

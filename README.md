@@ -215,7 +215,7 @@ A página de Serviços é dividida em 9 secções:
 ![Resultado Serviço](./apresentação/serviço_resultados.png)
 
 #### Exemplo de Relatórios
-
+Páginas serão geradas no Ambiente de Trabalho dentro da diretoria "Inventários Catering\\{Nome do serviço}\\{Nome da página}"
 ##### Montagem
 ![Relatório Montagem](./apresentação/relatoriomontagem.png)
 ##### Valores
