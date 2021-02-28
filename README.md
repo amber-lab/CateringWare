@@ -5,6 +5,10 @@ Permite gerir informações de eventos de Catering e gerar relatórios com base 
 # Estado
 Em desenvolvimento.
 
+# Desafios
+- Melhoria da Programação orientada a Objetos
+- Melhoria da Progamação de interface gráfica
+
 # Funcionalidades
 - Gestão de Pessoal, Produtos, Menus e Serviços Catering
 - Criação de relatório de preços, material de trabalho e produtos do serviço
