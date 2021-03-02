@@ -23,7 +23,8 @@ class CateringHomePage(tk.Frame):
         
         try:
             today_date = str(date.today())
-            data = CateringService.load('', like = True, operator = "AND DATE > {} AND STATUS = 'aberto'".format(today_date))
+            print("\n\n" + today_date + "\n\n")
+            data = CateringService.load('', like = True, operator = "AND DATE >= '{}' AND STATUS = 'aberto'".format(today_date))
             dates = []
             for row in data:
                 data = row[2]

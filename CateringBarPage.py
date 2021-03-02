@@ -188,14 +188,14 @@ class CateringBarPage(tk.Frame):
         try:
             data = CateringSet.load(name, like = True, operator = "AND TYPE = 'bar'")
         except CateringObjectNotFound:
-            self.setStatus('Não foram encontrados bars com esse nome!')
+            self.setStatus('Não foram encontrados Bares com esse nome!')
         else:
-            self.scrollframe = CateringPageScrollBarList(self.main_frame.interior, 'Bars Carregados', self.photo, VERDE, destroyButton = True)
+            self.scrollframe = CateringPageScrollBarList(self.main_frame.interior, 'Bares Carregados', self.photo, VERDE, destroyButton = True)
             for row in data:
                 self.scrollframe.listbox.insert('end', row[1])
             self.scrollframe.place(relx = 0.25, y = 770, relwidth = 0.50, height = 150)
             self.scrollframe.listbox.bind('<Double-Button-1>', self.setData)
-            self.setStatus('Lista de Bars carregados com sucesso!')
+            self.setStatus('Lista de Bares carregados com sucesso!')
     
     def setData(self, event):
         self.clearListbox(event)

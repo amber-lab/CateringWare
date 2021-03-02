@@ -15,16 +15,16 @@ class CateringAppetizersPage(tk.Frame):
         self.main_frame = CateringPageScrollBarFrame(self, height = 1100, background = CINZA)
         self.main_frame.place(x = 0, y = 0, relwidth = 1, relheight = 1)
 
-        title_bar = CateringPageTitleLabel(self.main_frame.interior, 'Gestão de Menus de Entradas', self.photo)
+        title_bar = CateringPageTitleLabel(self.main_frame.interior, 'Gestão de Ementas de Entradas', self.photo)
         title_bar.place(relx = 0.05, y = 50, relwidth = 0.9, height = 60)
         
-        new_separator = CateringPageTitleLabel(self.main_frame.interior, 'Criar Novo Menu de Entradas', self.photo)
+        new_separator = CateringPageTitleLabel(self.main_frame.interior, 'Criar Novo Ementa de Entradas', self.photo)
         new_separator.place(relx = 0.1, y = 130, relwidth = 0.8, height = 30)
         
-        self.name_entry = CateringPageLabeledEntry(self.main_frame.interior, 'Nome do Menu de Entradas', self.photo, default_text = 'Inserir Nome')
+        self.name_entry = CateringPageLabeledEntry(self.main_frame.interior, 'Nome da Ementa de Entradas', self.photo, default_text = 'Inserir Nome')
         self.name_entry.place(relx = 0.15, y = 180, relwidth = 0.7, height = 30)
         
-        bar_prod_label = CateringPageTitleLabel(self.main_frame.interior, 'Entradas do Menu', self.photo)
+        bar_prod_label = CateringPageTitleLabel(self.main_frame.interior, 'Entradas da Ementa', self.photo)
         bar_prod_label.place(relx = 0.1, y = 230, relwidth = 0.8, height = 30)
         
         self.apt_prod_uni_listbox = CateringPageScrollBarList(self.main_frame.interior, 'Entradas Unitárias', self.photo,  VERDE)
@@ -62,10 +62,10 @@ class CateringAppetizersPage(tk.Frame):
         for item in data:
             self.div_listbox.listbox.insert('end', item)
 
-        manager_separator = CateringPageTitleLabel(self.main_frame.interior, 'Gerir Menu Entradas', self.photo)
+        manager_separator = CateringPageTitleLabel(self.main_frame.interior, 'Gerir Ementa Entradas', self.photo)
         manager_separator.place(relx = 0.1, y = 670, relwidth = 0.8, height = 30)
         
-        self.manager_entry = CateringPageLabeledEntry(self.main_frame.interior, 'Nome do Menu Entradas', self.photo, on_default = False)
+        self.manager_entry = CateringPageLabeledEntry(self.main_frame.interior, 'Nome da Ementa Entradas', self.photo, on_default = False)
         self.manager_entry.place(relx = 0.25, y = 720, relwidth = 0.5, height = 30)
         
         self.save_b = tk.Button(self.main_frame.interior, text = 'Gravar', image = self.photo, compound = 'center', font = FONT, relief = 'raised')
@@ -116,21 +116,21 @@ class CateringAppetizersPage(tk.Frame):
         try:
             name = self.name_entry.get()
         except CateringDefaultValue:
-            self.setStatus('Impossível gravar Menu, dados em falta!')
+            self.setStatus('Impossível gravar Ementa, dados em falta!')
             return False
         prod_list = list(self.apt_prod_uni_listbox.listbox.get(0, 'end'))
         prod_list.extend(list(self.apt_prod_div_listbox.listbox.get(0, 'end')))
         print("\n\n" + str(prod_list) + "\n\n")
         if not name:
-            self.setStatus('Impossível gravar Menu, dados em falta!')
+            self.setStatus('Impossível gravar Ementa, dados em falta!')
             return False
         print(name)
         try:
-            self.obj = CateringAppetizersMenu(name)
+            self.obj = CateringAppetizersEmenta(name)
             for product in prod_list:
                 self.obj.setObjects(CateringProduct.load(product))
         except CateringExistingObject:
-            self.setStatus('Já existe Menu com esse nome!')
+            self.setStatus('Já existe Ementa com esse nome!')
             
             self.obj = CateringSet.load(name)
             
@@ -144,7 +144,7 @@ class CateringAppetizersPage(tk.Frame):
             for product in prod_list:
                 self.obj.setObjects(CateringProduct.load(product))
             
-            self.popup = CateringPagePopUpMensage(self, mensage = "Menu já existe\nAlterar Informações?")
+            self.popup = CateringPagePopUpMensage(self, mensage = "Ementa já existe\nAlterar Informações?")
             self.popup.place(relx = 0.25, rely = 0.60, relwidth = 0.50, relheight = 0.2)            
             
             self.popup.button_no.bind('<ButtonRelease-1>', self.eventDestroy)
@@ -155,19 +155,19 @@ class CateringAppetizersPage(tk.Frame):
             try:
                 self.obj.save()
             except sqlite3.OperationalError:
-                self.setStatus('Impossível Gravar Menu, dados em falta!')
+                self.setStatus('Impossível Gravar Ementa, dados em falta!')
             else:
-                self.setStatus('Menu Gravado Com Sucesso')
+                self.setStatus('Ementa Gravado Com Sucesso')
             
     def overwrite(self, event):
         try:
             self.obj.save(overwrite = True)
         except sqlite3.OperationalError:
             self.popup.destroy()
-            self.setStatus('Impossível gravar Menu, dados em falta!')
+            self.setStatus('Impossível gravar Ementa, dados em falta!')
         else:
             self.popup.destroy()
-            self.setStatus('Menu Atualizado com Sucesso')
+            self.setStatus('Ementa Atualizado com Sucesso')
     
     def subFramesDestroy(self):
         try:
@@ -188,14 +188,14 @@ class CateringAppetizersPage(tk.Frame):
         try:
             data = CateringSet.load(name, like = True, operator = "AND TYPE = 'appetizers'")
         except CateringObjectNotFound:
-            self.setStatus('Não foram encontrados Menus com esse nome!')
+            self.setStatus('Não foram encontrados Ementas com esse nome!')
         else:
-            self.scrollframe = CateringPageScrollBarList(self.main_frame.interior, 'Menus Carregados', self.photo, VERDE, destroyButton = True)
+            self.scrollframe = CateringPageScrollBarList(self.main_frame.interior, 'Ementas Carregados', self.photo, VERDE, destroyButton = True)
             for row in data:
                 self.scrollframe.listbox.insert('end', row[1])
             self.scrollframe.place(relx = 0.25, y = 770, relwidth = 0.50, height = 150)
             self.scrollframe.listbox.bind('<Double-Button-1>', self.setData)
-            self.setStatus('Lista de Menus carregad com sucesso!')
+            self.setStatus('Lista de Ementas carregad com sucesso!')
     
     def setData(self, event):
         self.clearListbox(event)
@@ -209,20 +209,20 @@ class CateringAppetizersPage(tk.Frame):
                 self.apt_prod_div_listbox.listbox.insert('end', prod.name)
         self.manager_entry.setEntryValue(name)
         self.scrollframe.destroy()
-        self.setStatus('Menu Carregado com sucesso')
+        self.setStatus('Ementa Carregado com sucesso')
     
     def deleteAppetizers(self, event):
         self.subFramesDestroy()
         try:
             name = self.manager_entry.get()
         except CateringDefaultValue:
-            self.setStatus('Impossivel Remover Menu, dados em falta!')
+            self.setStatus('Impossivel Remover Ementa, dados em falta!')
         try:
             self.obj = CateringSet.load(name)
         except CateringObjectNotFound:
-            self.setStatus('Impossivel Remover, Menu não encontrado!')
+            self.setStatus('Impossivel Remover, Ementa não encontrado!')
         else:
-            self.popup = CateringPagePopUpMensage(self, mensage = "Remover Menu?")
+            self.popup = CateringPagePopUpMensage(self, mensage = "Remover Ementa?")
             self.popup.place(relx = 0.25, rely = 0.60, relwidth = 0.50, relheight = 0.2)
             
             self.popup.button_yes.bind('<ButtonRelease-1>', self.confirmed_delete)
@@ -231,7 +231,7 @@ class CateringAppetizersPage(tk.Frame):
     def confirmed_delete(self, event):
         self.popup.destroy()
         self.obj.delete()
-        self.setStatus('Menu Removido com sucesso!')
+        self.setStatus('Ementa Removido com sucesso!')
     
     def c_update(self):
         try:

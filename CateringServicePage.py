@@ -341,7 +341,7 @@ class CateringServicePage(tk.Frame):
             self.setStatus('Impossível Guardar Serviço, dados em falta')
             return False
         except CateringDateError:
-            self.setStatus('Impossível Guardar Serviço, Data de inválida')
+            self.setStatus('Impossível Guardar Serviço, Data inválida')
         else:
             try:
                 self.obj = CateringService(name, number)
@@ -510,7 +510,7 @@ class CateringServicePage(tk.Frame):
             self.setStatus('Impossível Atualizar Serviço, dados em falta!')
         else:
             self.popup.destroy()
-            self.setStatus('Serviço Atualizado com Sucesso')                 
+            self.setStatus('Serviço Atualizado com Sucesso')
         
     def subFramesDestroy(self):
         try:

@@ -31,6 +31,7 @@ class CateringDBManager():
             query = "SELECT {c} FROM {t} WHERE NAME = '{n}'".format(c = ', '.join(db_info['columns']), t = db_info['table'], n = name)
         if operator:
             query += " {}".format(operator)
+        print("\n\n\n{}\n\n\n".format(query))
         cursor = conn.execute(query)
         if like or where_column or id_list:
             data = cursor.fetchall()
