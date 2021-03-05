@@ -18,7 +18,7 @@ class CateringDessertsPage(tk.Frame):
         title_bar = CateringPageTitleLabel(self.main_frame.interior, 'Gestão de Ementas de Sobremesas', self.photo)
         title_bar.place(relx = 0.05, y = 50, relwidth = 0.9, height = 60)
         
-        new_separator = CateringPageTitleLabel(self.main_frame.interior, 'Criar Novo Ementa de Sobremesas', self.photo)
+        new_separator = CateringPageTitleLabel(self.main_frame.interior, 'Criar Nova Ementa de Sobremesas', self.photo)
         new_separator.place(relx = 0.1, y = 130, relwidth = 0.8, height = 30)
         
         self.name_entry = CateringPageLabeledEntry(self.main_frame.interior, 'Nome da Ementa de Sobremesas', self.photo, default_text = 'Inserir Nome')
